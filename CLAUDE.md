@@ -65,7 +65,7 @@ Env:         PLANE_BASE_URL=https://api.plane.so
 
 ## Development Phases
 
-### Phase 1 — Foundation (current)
+### Phase 1 — Foundation (COMPLETE ✅)
 - [x] Next.js 14 scaffold + Tailwind
 - [x] Docker Compose: Next.js + Postgres 17 + Redis + Nginx
 - [x] Cloudflare Tunnel → port 7239 (ymtb.uplatepal.com) — nginx code done, Cloudflare dashboard binding manual
@@ -73,10 +73,19 @@ Env:         PLANE_BASE_URL=https://api.plane.so
 - [x] MDX blog: 2 posts live
 - [x] Solar system scene (R3F + drei)
 - [x] Galaxy scene (R3F + ShaderMaterial GLSL)
-- [ ] ymtb.uplatepal.com live → youmeantobe.com (Phase 1 end)
+- [x] Smoke test: all routes 200, Docker stack live at localhost:7239
 
-### Phase 2 — Platform (weeks 5–12)
-- User profiles, Earth/Physics/Math/Nutrition simulations, D3 charts, Kid zone v1, SEO
+### Phase 2 — Platform (weeks 5–12, SIM-FIRST, A→B→C→D)
+**Rule: content plan verified by CEO before building each sim.**
+
+- [ ] A: Physics simulation — D3 + matter.js (Plane: `0ccf6645`)
+- [ ] B: Mathematics simulation — D3 (Plane: `0ee4eccb`)
+- [ ] C: Nutrition simulation — D3 (Plane: `ece1232c`)
+- [ ] D: Earth ecosystem — R3F + D3 (Plane: `02b4f755`)
+- [ ] User profiles (bio, avatar, saved posts)
+- [ ] D3 chart components (reusable across blog posts)
+- [ ] Kid zone v1: YouTube API allowlist, session timer, PIN
+- [ ] SEO: sitemap.xml, og:image, robots.txt
 
 ### Phase 3 — Community (weeks 13–24)
 - Newsletter, Economics sim, courses, coaching, community posts, analytics

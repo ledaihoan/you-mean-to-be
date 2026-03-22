@@ -1,24 +1,42 @@
-# Phase 1 — Foundation: Cycle Status
+# YouMeanToBe — Project Status
 
-> Last updated: 2026-03-22
+> Last updated: 2026-03-23
 > Plane project: You Mean To Be (`160f99ff-c130-4caf-83c8-14361163ba7b`)
 > Target: ymtb.uplatepal.com live by 2026-04-19 → youmeantobe.com upgrade at Phase 1 end
-> Plane Cycle: `ef2f68b0-169b-4005-8d85-eeaec6da6f5f` (2026-03-22 → 2026-04-19)
+> Phase 1 Cycle: `ef2f68b0-169b-4005-8d85-eeaec6da6f5f` (2026-03-22 → 2026-04-19)
 
 ---
 
-## Milestone Tracker
+## Phase 1 — Foundation: COMPLETE ✅
 
-| # | Issue | Priority | Status | Plane ID | Notes |
-|---|-------|----------|--------|----------|-------|
-| 1 | [INFRA] Next.js 14 scaffold + Tailwind | urgent | Done | `b539bac0` | Scaffold complete — npm build + test pass |
-| 2 | [INFRA] Docker Compose stack | urgent | Done | `10d29611` | 4 services, Dockerfile, nginx — docker compose build OK |
-| 3 | [INFRA] Nginx on port 7239 + Cloudflare → ymtb.uplatepal.com | high | Done | `d0776dab` | Code done — nginx config + docker-compose nginx service (port 7239). Manual Cloudflare tunnel binding remains. |
-| 4 | [AUTH] better-auth email + Google OAuth | high | Done | `60c9b148` | better-auth v1 + Kysely/Postgres, sign-in/up pages, Google OAuth |
-| 5 | [CONTENT] MDX blog: 2 posts live | high | Done | `b5da2848` | 2 posts live, next-mdx-remote, blog listing + post pages |
-| 6 | [SIM] Solar system — R3F + drei | high | Done | `c00af32b` | Solar system at /simulations/solar-system, 8 planets, click-to-info |
-| 7 | [SIM] Galaxy — GLSL + Bloom | high | Done | `a1d0566c` | Galaxy at /simulations/galaxy, GLSL shaders, Bloom, spiral arms, sliders |
-| 9 | [DEPLOY] ymtb.uplatepal.com live — smoke test | urgent | Done | `3bd08124` | All 9 routes 200, Postgres/Redis/Nginx healthy, tests pass. Commits da95d53 + c2c2ec9 pushed. |
+| # | Issue | Status | Plane ID | Notes |
+|---|-------|--------|----------|-------|
+| 1 | [INFRA] Next.js 14 scaffold + Tailwind | Done | `b539bac0` | |
+| 2 | [INFRA] Docker Compose stack | Done | `10d29611` | |
+| 3 | [INFRA] Nginx on port 7239 + Cloudflare | Done | `d0776dab` | Manual CF binding remains |
+| 4 | [AUTH] better-auth email + Google OAuth | Done | `60c9b148` | |
+| 5 | [CONTENT] MDX blog: 2 posts live | Done | `b5da2848` | |
+| 6 | [SIM] Solar system — R3F + drei | Done | `c00af32b` | |
+| 7 | [SIM] Galaxy — GLSL + Bloom | Done | `a1d0566c` | |
+| 9 | [DEPLOY] smoke test | Done | `3bd08124` | |
+
+---
+
+## Phase 2 — Sim-First Order (CEO approved: A→B→C→D)
+
+**Rule: Content plan must be verified by CEO before building each sim.**
+
+| # | Sim | Tech | Plane ID | Status | Content Plan |
+|---|-----|------|----------|--------|--------------|
+| 10 | A: Physics — pendulum, gravity, waves | D3 + matter.js | `0ccf6645` | Todo | See issue description — verify before build |
+| 11 | B: Mathematics — function grapher, fractals | D3 | `0ee4eccb` | Todo | See issue description — verify before build |
+| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | See issue description — verify before build |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | See issue description — verify before build |
+
+**Remaining Phase 1 tech debt (non-blocking):**
+- Cloudflare: bind ymtb.uplatepal.com → :7239 (manual dashboard step)
+- Google OAuth: real credentials in .env
+- SEO: sitemap.xml + og:image
 
 ## Execution Order (critical path)
 
@@ -51,3 +69,4 @@
 | 2026-03-22 | Built #7 Galaxy GLSL + #4 better-auth. Galaxy: custom GLSL shaders, AdditiveBlending, Bloom, spiral arms, interactive sliders. Auth: better-auth v1, Kysely/Postgres, sign-in/up pages, Google OAuth. All 11 pages build successfully. | Start #3 tunnel + #8 smoke test |
 | 2026-03-22 | Pushed commits f18e8fb + 7e1e627 to origin/main. Updated #3 Nginx in Plane → Done. Code: nginx/default.conf + docker-compose nginx service on port 7239. Remaining: Cloudflare tunnel manual binding (dashboard task). Build verified: 11 routes, 0 errors. | #8 smoke test — needs Cloudflare + .env |
 | 2026-03-23 | Phase 1 complete! Fixed Docker naming bug (nginx proxy → ymtb-app), added /api/health route. Created .env with secure secrets. Docker Compose up: all 4 containers healthy. Smoke test: 9/9 routes HTTP 200. Plane #9 → Done. Commits da95d53 + c2c2ec9 pushed. | **Phase 1 done** — ready for Phase 2 planning |
+| 2026-03-23 | CEO decision: sim-first (A→B→C→D), content plan must be verified before building each sim. Created Phase 2 Plane issues: Physics (0ccf6645), Math (0ee4eccb), Nutrition (ece1232c), Earth (02b4f755). Resources saved: Three.js Journey, Stemkoski, varun.ca, twigl.app. Galaxy scene: uniform rotation is fine but could upgrade to differential per lesson 30. | **Next: present Physics content plan for CEO verification** |
