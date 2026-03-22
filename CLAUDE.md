@@ -18,18 +18,31 @@
 | Auth | better-auth (runs inside Next.js, no extra container) |
 | Database | PostgreSQL 17 (port 5433 via Tailscale) |
 | Cache / Sessions | Redis 7 Alpine |
-| Reverse Proxy | Nginx Alpine (port 8081 → Cloudflare Tunnel) |
+| Reverse Proxy | Nginx Alpine (port 7239 → Cloudflare Tunnel) |
 | Deployment | Docker Compose (self-hosted, isolated from MiseOS k3s) |
 
 **Infrastructure:** Home server (Xeon 2686v4, 32 GB RAM). Budget: 2 CPU cores, 4 GB RAM total. Cloudflare Tunnel for public HTTPS.
+
+**Ports & Services:**
+
+| Service | Internal Port | Host Port | Purpose |
+|---|---|---|---|
+| ymtb-nginx | 80 | 7239 | Reverse proxy — Cloudflare routes here |
+| ymtb-app | 3000 | 7139 | Next.js dev server (local) / Docker internal |
+| ymtb-db | 5432 | 5433 | Postgres 17 — Tailscale only |
+| ymtb-redis | 6379 | — | Redis — internal only |
+
+**Domain:** `ymtb.uplatepal.com` (current) → `youmeantobe.com` (Phase 1 end)
 
 **Test command:** `npm run test` (Jest / testing-library — set up in Phase 1)
 
 **Build command:** `npm run build`
 
-**Dev command:** `npm run dev`
+**Dev command:** `npm run dev` (runs on port 7139)
 
 **Docker:** `docker compose up -d` / `docker compose logs -f app`
+
+**Local dev (no Docker):** `npm run dev` → http://localhost:7139
 
 ---
 
@@ -53,14 +66,14 @@ Env:         PLANE_BASE_URL=https://api.plane.so
 ## Development Phases
 
 ### Phase 1 — Foundation (current)
-- [ ] Next.js 14 scaffold + Tailwind
-- [ ] Docker Compose: Next.js + Postgres 17 + Redis + Nginx
-- [ ] Cloudflare Tunnel → port 8081
-- [ ] better-auth: email/password + Google OAuth
-- [ ] MDX blog: 2 posts live
-- [ ] Solar system scene (R3F + drei)
-- [ ] Galaxy scene (R3F + ShaderMaterial GLSL)
-- [ ] youmeantobe.io live
+- [x] Next.js 14 scaffold + Tailwind
+- [x] Docker Compose: Next.js + Postgres 17 + Redis + Nginx
+- [ ] Cloudflare Tunnel → port 7239 (ymtb.uplatepal.com) ← needs DNS routing config
+- [x] better-auth: email/password + Google OAuth
+- [x] MDX blog: 2 posts live
+- [x] Solar system scene (R3F + drei)
+- [x] Galaxy scene (R3F + ShaderMaterial GLSL)
+- [ ] ymtb.uplatepal.com live → youmeantobe.com (Phase 1 end)
 
 ### Phase 2 — Platform (weeks 5–12)
 - User profiles, Earth/Physics/Math/Nutrition simulations, D3 charts, Kid zone v1, SEO
@@ -98,7 +111,7 @@ Key GLSL techniques:
 | app (Next.js) | 512 MB | 1.5 | Port internal only |
 | postgres | 512 MB | 0.5 | Port 5433 (Tailscale only) |
 | redis | 128 MB | 0.25 | Internal |
-| nginx | 64 MB | 0.25 | Port 8081 → Cloudflare |
+| nginx | 64 MB | 0.25 | Port 7239 → Cloudflare |
 
 ---
 
@@ -206,13 +219,17 @@ When creating Plane issues from the plan:
 - **Static assets** — Cloudflare CDN cache, `Cache-Control: public, max-age=31536000, immutable` on `/public/**`
 - **Three.js** — always `dynamic import()` per simulation, never in root bundle
 - **Postgres** — daily `pg_dump` to Backblaze B2 for backup
+- **R3F version** — use `@react-three/fiber@8` (v9 needs React 19)
+- **Postprocessing** — use `@react-three/postprocessing@2` (v3 needs R3F v9)
+- **next.config** — uses `.mjs` (Next.js 14.2 doesn't support `.ts` config)
+- **npm install** — always use `npm install --include=dev` (NODE_ENV=production is set globally)
 
 ---
 
 ## Open Questions
 
-- [ ] Domain confirmed as `youmeantobe.io`?
-- [ ] Cloudflare Tunnel: new tunnel or new hostname on existing MiseOS tunnel?
+- [x] Domain: `ymtb.uplatepal.com` (Phase 1), upgrade to `youmeantobe.com` (Phase 1 end)
+- [x] Cloudflare Tunnel: use existing MiseOS tunnel, route ymtb.uplatepal.com → port 7239
 - [ ] Postgres 17: share with MiseOS or separate instance?
 - [ ] Phase 3 coaching: Cal.com embed or custom booking?
 - [ ] Newsletter: Resend vs self-hosted Listmonk?
