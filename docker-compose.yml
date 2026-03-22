@@ -3,7 +3,7 @@ networks:
     driver: bridge
 
 services:
-  app:
+  ymtb-app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -24,7 +24,7 @@ services:
       ymtb-redis:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/health']
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:3000/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -89,7 +89,7 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - app
+      - ymtb-app
     healthcheck:
       test: ['CMD', 'wget', '-q', '--spider', 'http://localhost/health']
       interval: 30s
