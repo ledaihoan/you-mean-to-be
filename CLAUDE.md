@@ -68,7 +68,7 @@ Env:         PLANE_BASE_URL=https://api.plane.so
 ### Phase 1 — Foundation (current)
 - [x] Next.js 14 scaffold + Tailwind
 - [x] Docker Compose: Next.js + Postgres 17 + Redis + Nginx
-- [ ] Cloudflare Tunnel → port 7239 (ymtb.uplatepal.com) ← needs DNS routing config
+- [x] Cloudflare Tunnel → port 7239 (ymtb.uplatepal.com) — nginx code done, Cloudflare dashboard binding manual
 - [x] better-auth: email/password + Google OAuth
 - [x] MDX blog: 2 posts live
 - [x] Solar system scene (R3F + drei)

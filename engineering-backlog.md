@@ -11,7 +11,7 @@
 |---|-------|----------|------------|----------|--------|
 | 1 | [INFRA] Next.js 14 scaffold + Tailwind | urgent | — | `b539bac0` | [x] |
 | 2 | [INFRA] Docker Compose stack | urgent | #1 | `10d29611` | [x] |
-| 3 | [INFRA] Nginx on port 8081 | medium | #2 | `d0776dab` | [ ] |
+| 3 | [INFRA] Nginx on port 7239 + Cloudflare | medium | #2 | `d0776dab` | [x] |
 | 4 | [AUTH] better-auth email + Google OAuth | high | #1 + #2 | `60c9b148` | [x] |
 | 5 | [CONTENT] MDX blog: 2 posts live | high | #1 | `b5da2848` | [x] |
 | 6 | [SIM] Solar system — R3F + drei | high | #1 | `c00af32b` | [x] |

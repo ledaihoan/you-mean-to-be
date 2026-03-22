@@ -13,7 +13,7 @@
 |---|-------|----------|--------|----------|-------|
 | 1 | [INFRA] Next.js 14 scaffold + Tailwind | urgent | Done | `b539bac0` | Scaffold complete — npm build + test pass |
 | 2 | [INFRA] Docker Compose stack | urgent | Done | `10d29611` | 4 services, Dockerfile, nginx — docker compose build OK |
-| 3 | [INFRA] Nginx on port 7239 + Cloudflare → ymtb.uplatepal.com | high | Todo | `d0776dab` | Needs DNS binding |
+| 3 | [INFRA] Nginx on port 7239 + Cloudflare → ymtb.uplatepal.com | high | Done | `d0776dab` | Code done — nginx config + docker-compose nginx service (port 7239). Manual Cloudflare tunnel binding remains. |
 | 4 | [AUTH] better-auth email + Google OAuth | high | Done | `60c9b148` | better-auth v1 + Kysely/Postgres, sign-in/up pages, Google OAuth |
 | 5 | [CONTENT] MDX blog: 2 posts live | high | Done | `b5da2848` | 2 posts live, next-mdx-remote, blog listing + post pages |
 | 6 | [SIM] Solar system — R3F + drei | high | Done | `c00af32b` | Solar system at /simulations/solar-system, 8 planets, click-to-info |
@@ -31,7 +31,7 @@
 
 ## Current Sprint Focus
 
-**Next up:** #3 Nginx + Cloudflare tunnel → then #8 smoke test (Phase 1 gate)
+**Next up:** #8 smoke test (Phase 1 gate) — blocked on Cloudflare tunnel binding + .env setup
 
 ## Decisions Made
 
@@ -49,3 +49,4 @@
 | 2026-03-22 | Built #2 Docker Compose — 4 services (app, postgres, redis, nginx), multi-stage Dockerfile, nginx config, .env.example. Config validates. Docker build running. | Start #4 auth + #6 Solar |
 | 2026-03-22 | Built #5 MDX blog + #6 Solar System. Blog: next-mdx-remote, 2 posts live, listing + post pages. Solar: R3F + drei, 8 planets, click-to-info overlay. Build + test pass. | Start #7 Galaxy |
 | 2026-03-22 | Built #7 Galaxy GLSL + #4 better-auth. Galaxy: custom GLSL shaders, AdditiveBlending, Bloom, spiral arms, interactive sliders. Auth: better-auth v1, Kysely/Postgres, sign-in/up pages, Google OAuth. All 11 pages build successfully. | Start #3 tunnel + #8 smoke test |
+| 2026-03-22 | Pushed commits f18e8fb + 7e1e627 to origin/main. Updated #3 Nginx in Plane → Done. Code: nginx/default.conf + docker-compose nginx service on port 7239. Remaining: Cloudflare tunnel manual binding (dashboard task). Build verified: 11 routes, 0 errors. | #8 smoke test — needs Cloudflare + .env |
