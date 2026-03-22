@@ -1,0 +1,106 @@
+networks:
+  ymtb_net:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ymtb-app
+    restart: unless-stopped
+    networks: [ymtb_net]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://ymtb_user:${POSTGRES_PASSWORD}@ymtb-postgres:5432/ymtb_db
+      REDIS_URL: redis://ymtb-redis:6379
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:7239}
+    depends_on:
+      ymtb-postgres:
+        condition: service_healthy
+      ymtb-redis:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 512M
+
+  ymtb-postgres:
+    image: postgres:17-alpine
+    container_name: ymtb-postgres
+    restart: unless-stopped
+    networks: [ymtb_net]
+    environment:
+      POSTGRES_USER: ymtb_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ymtb_db
+    volumes:
+      - ymtb_pgdata:/var/lib/postgresql/data
+    ports:
+      - '127.0.0.1:5433:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ymtb_user -d ymtb_db']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  ymtb-redis:
+    image: redis:7-alpine
+    container_name: ymtb-redis
+    restart: unless-stopped
+    networks: [ymtb_net]
+    command: redis-server --appendonly yes
+    volumes:
+      - ymtb_redisdata:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+
+  ymtb-nginx:
+    image: nginx:alpine
+    container_name: ymtb-nginx
+    restart: unless-stopped
+    networks: [ymtb_net]
+    ports:
+      - '7239:80'
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 64M
+
+volumes:
+  ymtb_pgdata:
+  ymtb_redisdata:

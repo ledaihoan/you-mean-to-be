@@ -1,0 +1,85 @@
+---
+title: GLSL Shaders — The Magic Behind the Galaxy Scene
+date: 2026-03-22
+excerpt: How we built a procedural spiral galaxy with custom GLSL shaders and WebGL — a deep dive into GPU programming for the browser.
+---
+
+If you've played with the Galaxy simulation on this platform, you've seen it: thousands of stars slowly rotating in a spiral pattern, with color gradients from hot blue cores to warm orange edges, all rendered in real-time in your browser. This post explains how it works.
+
+## What is GLSL?
+
+GLSL (OpenGL Shading Language) is a C-like language for writing programs that run on the GPU. Every pixel in a WebGL scene passes through a **fragment shader** — a tiny program that decides what color that pixel should be.
+
+The Galaxy scene uses two key shaders:
+
+**Vertex Shader** — runs once per star (per vertex in our point cloud). It decides where each star is positioned and how big it appears.
+
+**Fragment Shader** — runs once per pixel of each star. It decides what color each star is based on its position.
+
+## The Vertex Shader
+
+```glsl
+uniform float uTime;
+uniform float uSize;
+
+attribute float aScale;
+attribute vec3 aColor;
+attribute vec3 aRandomness;
+
+varying vec3 vColor;
+
+void main() {
+  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+  // Rotate over time for animation
+  float angle = uTime * 0.2;
+  modelPosition.xz *= mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+
+  vec4 viewPosition = viewMatrix * modelPosition;
+  vec4 projectedPosition = projectionMatrix * viewPosition;
+
+  gl_Position = projectedPosition;
+  gl_PointSize = uSize * aScale * (1.0 / -viewPosition.z);
+
+  vColor = aColor;
+}
+```
+
+Key tricks here:
+- `uTime` uniform drives animation — the galaxy slowly rotates
+- `gl_PointSize` scales with distance (`1.0 / -viewPosition.z`) so closer stars appear larger
+- `aRandomness` attribute offsets each star slightly for organic variation
+
+## The Fragment Shader
+
+```glsl
+varying vec3 vColor;
+
+void main() {
+  // Discard square corners → circular particles
+  float dist = distance(gl_PointCoord, vec2(0.5));
+  if (dist > 0.5) discard;
+
+  // Soft edge
+  float alpha = 1.0 - (dist * 2.0);
+  gl_FragColor = vec4(vColor, alpha * 0.8);
+}
+```
+
+The `gl_PointCoord` trick is essential — by default, WebGL draws point sprites as squares. We discard any pixel where the distance from center exceeds 0.5, giving us perfect circles.
+
+## Additive Blending
+
+The final piece is WebGL's `AdditiveBlending` mode. Instead of opaque pixels obscuring each other, additive blending *adds* color values together. When thousands of slightly-transparent stars overlap, they create bright regions — exactly how real nebulae glow.
+
+Combined with the `@react-three/postprocessing` Bloom effect, this creates the cinematic look: stars don't just appear, they *bloom* with light.
+
+## Why Bother?
+
+You could load a pre-rendered galaxy image. It would be faster to load and simpler to build. But:
+
+1. **Interactivity** — sliders to change star density, arm count, rotation speed
+2. **Learning** — understanding GLSL opens the door to all GPU programming
+3. **Craft** — there's a difference between using something someone else built and building it yourself
+
+The goal of this platform isn't just to deliver content. It's to show you the gears.
