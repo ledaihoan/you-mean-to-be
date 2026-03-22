@@ -16,7 +16,7 @@
 | 5 | [CONTENT] MDX blog: 2 posts live | high | #1 | `b5da2848` | [x] |
 | 6 | [SIM] Solar system — R3F + drei | high | #1 | `c00af32b` | [x] |
 | 7 | [SIM] Galaxy — GLSL + Bloom | high | #1, after #6 | `a1d0566c` | [x] |
-| 8 | [DEPLOY] Stack live on localhost:8081 | urgent | ALL | `3bd08124` | [ ] |
+| 8 | [DEPLOY] ymtb.uplatepal.com live — smoke test | urgent | ALL | `3bd08124` | [x] |
 
 ## Critical Path
 

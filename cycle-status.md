@@ -18,7 +18,7 @@
 | 5 | [CONTENT] MDX blog: 2 posts live | high | Done | `b5da2848` | 2 posts live, next-mdx-remote, blog listing + post pages |
 | 6 | [SIM] Solar system — R3F + drei | high | Done | `c00af32b` | Solar system at /simulations/solar-system, 8 planets, click-to-info |
 | 7 | [SIM] Galaxy — GLSL + Bloom | high | Done | `a1d0566c` | Galaxy at /simulations/galaxy, GLSL shaders, Bloom, spiral arms, sliders |
-| 8 | [DEPLOY] youmeantobe.com live — smoke test | urgent | Todo | `3bd08124` | Phase 1 gate |
+| 9 | [DEPLOY] ymtb.uplatepal.com live — smoke test | urgent | Done | `3bd08124` | All 9 routes 200, Postgres/Redis/Nginx healthy, tests pass. Commits da95d53 + c2c2ec9 pushed. |
 
 ## Execution Order (critical path)
 
@@ -31,7 +31,7 @@
 
 ## Current Sprint Focus
 
-**Next up:** #8 smoke test (Phase 1 gate) — blocked on Cloudflare tunnel binding + .env setup
+**Next up:** None — **Phase 1 COMPLETE** ✓
 
 ## Decisions Made
 
@@ -50,3 +50,4 @@
 | 2026-03-22 | Built #5 MDX blog + #6 Solar System. Blog: next-mdx-remote, 2 posts live, listing + post pages. Solar: R3F + drei, 8 planets, click-to-info overlay. Build + test pass. | Start #7 Galaxy |
 | 2026-03-22 | Built #7 Galaxy GLSL + #4 better-auth. Galaxy: custom GLSL shaders, AdditiveBlending, Bloom, spiral arms, interactive sliders. Auth: better-auth v1, Kysely/Postgres, sign-in/up pages, Google OAuth. All 11 pages build successfully. | Start #3 tunnel + #8 smoke test |
 | 2026-03-22 | Pushed commits f18e8fb + 7e1e627 to origin/main. Updated #3 Nginx in Plane → Done. Code: nginx/default.conf + docker-compose nginx service on port 7239. Remaining: Cloudflare tunnel manual binding (dashboard task). Build verified: 11 routes, 0 errors. | #8 smoke test — needs Cloudflare + .env |
+| 2026-03-23 | Phase 1 complete! Fixed Docker naming bug (nginx proxy → ymtb-app), added /api/health route. Created .env with secure secrets. Docker Compose up: all 4 containers healthy. Smoke test: 9/9 routes HTTP 200. Plane #9 → Done. Commits da95d53 + c2c2ec9 pushed. | **Phase 1 done** — ready for Phase 2 planning |
