@@ -230,7 +230,7 @@ When creating Plane issues from the plan:
 
 - [x] Domain: `ymtb.uplatepal.com` (Phase 1), upgrade to `youmeantobe.com` (Phase 1 end)
 - [x] Cloudflare Tunnel: use existing MiseOS tunnel, route ymtb.uplatepal.com → port 7239
-- [ ] Postgres 17: share with MiseOS or separate instance?
+- [x] Postgres 17: separate instance on port 5433 via Tailscale
 - [ ] Phase 3 coaching: Cal.com embed or custom booking?
 - [ ] Newsletter: Resend vs self-hosted Listmonk?
 - [ ] Analytics: Plausible cloud vs self-hosted?
