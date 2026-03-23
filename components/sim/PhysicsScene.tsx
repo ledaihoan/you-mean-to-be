@@ -150,12 +150,14 @@ function PendulumLab() {
   }, [gravity, length, damping, running])
 
   return (
-    <div className="bg-slate-900/60 rounded-2xl p-6 border border-white/10">
+    <div className="bg-slate-900/60 rounded-2xl p-4 sm:p-6 border border-white/10">
       <h3 className="text-lg font-semibold text-white mb-1">Pendulum Lab</h3>
       <p className="text-white/40 text-xs mb-4">Simple harmonic motion — the heartbeat of physical law. Adjust parameters and watch energy trade between kinetic and potential.</p>
-      <div className="flex gap-4">
-        <svg ref={svgRef} width="400" height="320" className="rounded-xl bg-slate-950/80" />
-        <div className="flex flex-col gap-3 w-48">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full overflow-x-auto rounded-xl bg-slate-950/80 pb-2">
+          <svg ref={svgRef} width="400" height="320" className="mx-auto" />
+        </div>
+        <div className="flex flex-col gap-3 lg:w-48">
           <div>
             <label className="text-xs text-white/50 block mb-1">Gravity: <span className="text-blue-400 font-mono">{gravity.toFixed(1)} m/s²</span></label>
             <input type="range" min="1" max="20" step="0.1" value={gravity} onChange={e => setGravity(Number(e.target.value))} className="w-full accent-blue-400" />
@@ -297,12 +299,14 @@ function WaveSuperposition() {
   }, [drawWaves])
 
   return (
-    <div className="bg-slate-900/60 rounded-2xl p-6 border border-white/10">
+    <div className="bg-slate-900/60 rounded-2xl p-4 sm:p-6 border border-white/10">
       <h3 className="text-lg font-semibold text-white mb-1">Wave Superposition</h3>
       <p className="text-white/40 text-xs mb-4">Where two waves meet, they add. Constructive interference amplifies; destructive cancels. This is how your ears separate voices in a crowded room.</p>
-      <div className="flex gap-4">
-        <canvas ref={canvasRef} width="600" height="280" className="rounded-xl bg-slate-950/80" />
-        <div className="flex flex-col gap-3 w-48">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full overflow-x-auto rounded-xl bg-slate-950/80 pb-2">
+          <canvas ref={canvasRef} width="600" height="280" className="mx-auto" />
+        </div>
+        <div className="flex flex-col gap-3 lg:w-48">
           <div>
             <label className="text-xs text-white/50 block mb-1">Amplitude: <span className="text-cyan-400 font-mono">{amplitude}px</span></label>
             <input type="range" min="10" max="100" step="5" value={amplitude} onChange={e => setAmplitude(Number(e.target.value))} className="w-full accent-cyan-400" />
@@ -483,12 +487,14 @@ function SpringMassOscillator() {
   }, [springK, mass, dampingRatio])
 
   return (
-    <div className="bg-slate-900/60 rounded-2xl p-6 border border-white/10">
+    <div className="bg-slate-900/60 rounded-2xl p-4 sm:p-6 border border-white/10">
       <h3 className="text-lg font-semibold text-white mb-1">Spring-Mass Oscillator</h3>
       <p className="text-white/40 text-xs mb-4">Hooke&apos;s law in action — the same physics governing a heart chamber filling, a building swaying in wind, and atoms vibrating in molecules.</p>
-      <div className="flex gap-4">
-        <svg ref={svgRef} width="400" height="340" className="rounded-xl bg-slate-950/80" />
-        <div className="flex flex-col gap-3 w-48">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full overflow-x-auto rounded-xl bg-slate-950/80 pb-2">
+          <svg ref={svgRef} width="400" height="340" className="mx-auto" />
+        </div>
+        <div className="flex flex-col gap-3 lg:w-48">
           <div>
             <label className="text-xs text-white/50 block mb-1">Spring constant (k): <span className="text-red-400 font-mono">{springK.toFixed(2)}</span></label>
             <input type="range" min="0.05" max="1" step="0.01" value={springK} onChange={e => setSpringK(Number(e.target.value))} className="w-full accent-red-400" />
@@ -577,7 +583,7 @@ export default function PhysicsScene() {
         {/* Understanding Life connection */}
         <div className="mt-10 bg-white/[0.03] border border-white/10 rounded-2xl p-6 max-w-4xl mx-auto">
           <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-3">Understanding Life Connections</h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div>
               <p className="text-xs text-blue-400 font-medium mb-1">Circadian Rhythms</p>
               <p className="text-white/40 text-xs leading-relaxed">The pendulum&apos;s natural period inspired Huygens — and your body&apos;s master clock runs on similar cycles. Every cell in your body has molecular oscillators that tick roughly every 24 hours.</p>
