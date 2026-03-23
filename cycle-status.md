@@ -28,10 +28,10 @@
 
 | # | Sim | Tech | Plane ID | Status | Content Plan |
 |---|-----|------|----------|--------|--------------|
-| 10 | A: Physics — pendulum, gravity, waves | D3 + matter.js | `0ccf6645` | Todo | See issue description — verify before build |
-| 11 | B: Mathematics — function grapher, fractals | D3 | `0ee4eccb` | Todo | See issue description — verify before build |
-| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | See issue description — verify before build |
-| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | See issue description — verify before build |
+| 10 | A: Physics — pendulum, gravity, waves | D3 + matter.js | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
+| 11 | B: Mathematics — function grapher, fractals | D3 | `0ee4eccb` | Todo | CEO verification needed |
+| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | CEO verification needed |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | CEO verification needed |
 
 **Remaining Phase 1 tech debt (non-blocking):**
 - Cloudflare: bind ymtb.uplatepal.com → :7239 (manual dashboard step)
@@ -49,7 +49,7 @@
 
 ## Current Sprint Focus
 
-**Next up:** None — **Phase 1 COMPLETE** ✓
+**Next up:** CEO verify Math content plan → Math sim (issue #11)
 
 ## Decisions Made
 
@@ -70,3 +70,4 @@
 | 2026-03-22 | Pushed commits f18e8fb + 7e1e627 to origin/main. Updated #3 Nginx in Plane → Done. Code: nginx/default.conf + docker-compose nginx service on port 7239. Remaining: Cloudflare tunnel manual binding (dashboard task). Build verified: 11 routes, 0 errors. | #8 smoke test — needs Cloudflare + .env |
 | 2026-03-23 | Phase 1 complete! Fixed Docker naming bug (nginx proxy → ymtb-app), added /api/health route. Created .env with secure secrets. Docker Compose up: all 4 containers healthy. Smoke test: 9/9 routes HTTP 200. Plane #9 → Done. Commits da95d53 + c2c2ec9 pushed. | **Phase 1 done** — ready for Phase 2 planning |
 | 2026-03-23 | CEO decision: sim-first (A→B→C→D), content plan must be verified before building each sim. Created Phase 2 Plane issues: Physics (0ccf6645), Math (0ee4eccb), Nutrition (ece1232c), Earth (02b4f755). Resources saved: Three.js Journey, Stemkoski, varun.ca, twigl.app. Galaxy scene: uniform rotation is fine but could upgrade to differential per lesson 30. | **Next: present Physics content plan for CEO verification** |
+| 2026-03-23 | Phase 2A Physics complete. QA'd existing implementation on branch sim/physics-simulation. Found Docker image was 17h old (pre-physics). Rebuilt and redeployed. All 7 routes return HTTP 200. Plane #10 → Done. Build passes, tests pass (2/2). Docker fully live. | **Next: CEO verify Math content plan → Math sim** |
