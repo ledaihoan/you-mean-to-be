@@ -141,27 +141,38 @@ export default function HomePage() {
             <h2 className="text-2xl font-bold text-white mb-2">Live Simulations</h2>
             <p className="text-white/40 text-sm">Real-time WebGL — no plugins needed</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
             <Link
               href="/simulations/solar-system"
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-8 min-h-[180px] flex flex-col justify-end"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-6 min-h-[160px] flex flex-col justify-end"
             >
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_70%)]" />
               <div className="relative">
                 <p className="text-white/40 text-xs mb-1 font-medium uppercase tracking-wider">Simulation</p>
-                <p className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">Solar System</p>
-                <p className="text-white/40 text-sm mt-1">8 planets · orbit controls · click to explore</p>
+                <p className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Solar System</p>
+                <p className="text-white/40 text-xs mt-1">8 planets · orbit controls</p>
               </div>
             </Link>
             <Link
               href="/simulations/galaxy"
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-950 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-8 min-h-[180px] flex flex-col justify-end"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-950 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-6 min-h-[160px] flex flex-col justify-end"
             >
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.2),transparent_70%)]" />
               <div className="relative">
                 <p className="text-white/40 text-xs mb-1 font-medium uppercase tracking-wider">Simulation</p>
-                <p className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Galaxy</p>
-                <p className="text-white/40 text-sm mt-1">GLSL shaders · bloom · spiral arms</p>
+                <p className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Galaxy</p>
+                <p className="text-white/40 text-xs mt-1">GLSL shaders · bloom</p>
+              </div>
+            </Link>
+            <Link
+              href="/simulations/physics"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-6 min-h-[160px] flex flex-col justify-end"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_70%)]" />
+              <div className="relative">
+                <p className="text-white/40 text-xs mb-1 font-medium uppercase tracking-wider">Simulation</p>
+                <p className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Physics</p>
+                <p className="text-white/40 text-xs mt-1">Pendulum · Waves · Springs</p>
               </div>
             </Link>
           </div>

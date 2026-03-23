@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import HomePage from './page'
 
 describe('HomePage', () => {
-  it('renders the title', () => {
+  it('renders the hero section', () => {
     render(<HomePage />)
-    expect(screen.getByText('YouMeanToBe')).toBeInTheDocument()
+    expect(screen.getByText(/What do you/i)).toBeInTheDocument()
   })
 
   it('renders the description', () => {
