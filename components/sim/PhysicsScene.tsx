@@ -1,6 +1,89 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
+import * as d3 from 'd3'
+
+// ─── D3: Period vs Length Chart ───────────────────────────────────────────────
+function PendulumPeriodChart({ gravity, length }: { gravity: number; length: number }) {
+  const ref = useRef<SVGSVGElement>(null)
+
+  useEffect(() => {
+    const svg = ref.current
+    if (!svg) return
+
+    const w = 380, h = 120, m = { top: 8, right: 16, bottom: 22, left: 36 }
+    const iw = w - m.left - m.right, ih = h - m.top - m.bottom
+
+    // Map slider length (50-250px) to physics length (0.1-5m)
+    const lengthM = ((length - 50) / 200) * 4.9 + 0.1
+
+    const xScale = d3.scaleLinear().domain([0.1, 5]).range([0, iw])
+    const tAtCurrent = 2 * Math.PI * Math.sqrt(lengthM / gravity)
+    const tMax = 2 * Math.PI * Math.sqrt(5 / 1)
+    const yScale = d3.scaleLinear().domain([0, tMax]).range([ih, 0])
+
+    const root = d3.select(svg)
+    root.selectAll('*').remove()
+    root.attr('width', w).attr('height', h)
+
+    const g = root.append('g').attr('transform', `translate(${m.left},${m.top})`)
+
+    // Axes
+    g.append('g')
+      .attr('transform', `translate(0,${ih})`)
+      .call(d3.axisBottom(xScale).ticks(5).tickFormat(d => `${d}m`))
+      .call(a => {
+        a.select('.domain').attr('stroke', 'rgba(255,255,255,0.1)')
+        a.selectAll('line').attr('stroke', 'rgba(255,255,255,0.1)')
+        a.selectAll('text').attr('fill', 'rgba(255,255,255,0.3)').attr('font-size', '9')
+      })
+
+    g.append('g')
+      .call(d3.axisLeft(yScale).ticks(3).tickFormat(d => `${d}s`))
+      .call(a => {
+        a.select('.domain').attr('stroke', 'rgba(255,255,255,0.1)')
+        a.selectAll('line').attr('stroke', 'rgba(255,255,255,0.1)')
+        a.selectAll('text').attr('fill', 'rgba(255,255,255,0.3)').attr('font-size', '9')
+      })
+
+    // T = 2π√(L/g) curve
+    const pts: [number, number][] = []
+    for (let L = 0.1; L <= 5; L += 0.05) {
+      pts.push([L, 2 * Math.PI * Math.sqrt(L / gravity)])
+    }
+
+    const line = d3.line<[number, number]>()
+      .x(d => xScale(d[0]))
+      .y(d => yScale(d[1]))
+
+    g.append('path')
+      .datum(pts)
+      .attr('d', line)
+      .attr('fill', 'none')
+      .attr('stroke', '#3b82f6')
+      .attr('stroke-width', 1.5)
+      .attr('opacity', 0.6)
+
+    // Current point
+    g.append('circle')
+      .attr('cx', xScale(lengthM))
+      .attr('cy', yScale(tAtCurrent))
+      .attr('r', 4)
+      .attr('fill', '#93c5fd')
+      .attr('filter', 'drop-shadow(0 0 4px rgba(147,197,253,0.8))')
+
+    g.append('text')
+      .attr('x', xScale(lengthM) + 6)
+      .attr('y', yScale(tAtCurrent) - 4)
+      .attr('fill', '#93c5fd')
+      .attr('font-size', '9')
+      .attr('font-family', 'monospace')
+      .text(`T=${tAtCurrent.toFixed(2)}s`)
+
+  }, [gravity, length])
+
+  return <svg ref={ref} className="w-full" />
+}
 
 // ─── Demo 1: Pendulum Lab ────────────────────────────────────────────────────
 function PendulumLab() {
@@ -189,6 +272,12 @@ function PendulumLab() {
           </div>
         </div>
       </div>
+
+      {/* D3 Period vs Length Chart */}
+      <div className="mt-4 bg-slate-950/60 rounded-xl p-3 border border-white/5">
+        <p className="text-[10px] text-white/30 mb-2 uppercase tracking-wider">Period vs Length (T = 2π√(L/g))</p>
+        <PendulumPeriodChart gravity={gravity} length={length} />
+      </div>
     </div>
   )
 }
@@ -338,6 +427,8 @@ function WaveSuperposition() {
 function SpringMassOscillator() {
   const svgRef = useRef<SVGSVGElement>(null)
   const frameRef = useRef<number>(0)
+  const phaseRef = useRef<HTMLCanvasElement>(null)
+  const phaseHistory = useRef<[number, number][]>([])
   const [springK, setSpringK] = useState(0.3)
   const [mass, setMass] = useState(2)
   const [dampingRatio, setDampingRatio] = useState(0.1)
@@ -347,6 +438,7 @@ function SpringMassOscillator() {
   const reset = useCallback(() => {
     posRef.current = 100
     velRef.current = 0
+    phaseHistory.current = []
   }, [])
 
   useEffect(() => {
@@ -479,6 +571,88 @@ function SpringMassOscillator() {
         svg.appendChild(t)
       })
 
+      // Energy bars (KE and PE)
+      const ke = 0.5 * mass * velRef.current ** 2
+      const pe = 0.5 * springK * posRef.current ** 2
+      const maxE = 0.5 * mass * (180 / dt) ** 2 + 0.5 * springK * 180 ** 2
+      const barY2 = statsY + 60
+      const barW2 = 100
+      const barH2 = 8
+      const keBar2 = document.createElementNS(svgNS, 'rect')
+      keBar2.setAttribute('x', String(anchorX - barW2 / 2))
+      keBar2.setAttribute('y', String(barY2))
+      keBar2.setAttribute('width', String(Math.min(ke / maxE, 1) * barW2))
+      keBar2.setAttribute('height', String(barH2))
+      keBar2.setAttribute('fill', '#f97316')
+      svg.appendChild(keBar2)
+      const peBar2 = document.createElementNS(svgNS, 'rect')
+      peBar2.setAttribute('x', String(anchorX - barW2 / 2))
+      peBar2.setAttribute('y', String(barY2 + barH2 + 2))
+      peBar2.setAttribute('width', String(Math.min(pe / maxE, 1) * barW2))
+      peBar2.setAttribute('height', String(barH2))
+      peBar2.setAttribute('fill', '#22c55e')
+      svg.appendChild(peBar2)
+      const keLabel2 = document.createElementNS(svgNS, 'text')
+      keLabel2.setAttribute('x', String(anchorX + barW2 / 2 + 4))
+      keLabel2.setAttribute('y', String(barY2 + 7))
+      keLabel2.setAttribute('font-size', '9')
+      keLabel2.setAttribute('fill', 'rgba(255,255,255,0.4)')
+      keLabel2.setAttribute('font-family', 'monospace')
+      keLabel2.textContent = `KE`
+      svg.appendChild(keLabel2)
+      const peLabel2 = document.createElementNS(svgNS, 'text')
+      peLabel2.setAttribute('x', String(anchorX + barW2 / 2 + 4))
+      peLabel2.setAttribute('y', String(barY2 + barH2 + 9))
+      peLabel2.setAttribute('font-size', '9')
+      peLabel2.setAttribute('fill', 'rgba(255,255,255,0.4)')
+      peLabel2.setAttribute('font-family', 'monospace')
+      peLabel2.textContent = `PE`
+      svg.appendChild(peLabel2)
+
+      // Phase space plot
+      const phaseCanvas = phaseRef.current
+      if (phaseCanvas) {
+        const pCtx = phaseCanvas.getContext('2d')
+        if (pCtx) {
+          pCtx.fillStyle = 'rgba(15,23,42,0.3)'
+          pCtx.fillRect(0, 0, phaseCanvas.width, phaseCanvas.height)
+          // Axes
+          pCtx.strokeStyle = 'rgba(255,255,255,0.08)'
+          pCtx.lineWidth = 1
+          pCtx.beginPath()
+          pCtx.moveTo(phaseCanvas.width / 2, 0)
+          pCtx.lineTo(phaseCanvas.width / 2, phaseCanvas.height)
+          pCtx.moveTo(0, phaseCanvas.height / 2)
+          pCtx.lineTo(phaseCanvas.width, phaseCanvas.height / 2)
+          pCtx.stroke()
+          // Axis labels
+          pCtx.fillStyle = 'rgba(255,255,255,0.2)'
+          pCtx.font = '8px monospace'
+          pCtx.fillText('v', 4, 10)
+          pCtx.fillText('x', phaseCanvas.width - 10, phaseCanvas.height - 4)
+          // Track history
+          phaseHistory.current.push([posRef.current, velRef.current])
+          if (phaseHistory.current.length > 300) phaseHistory.current.shift()
+          const pts = phaseHistory.current
+          if (pts.length > 1) {
+            const xRange = 180, vRange = 180 / 0.016
+            for (let i = 1; i < pts.length; i++) {
+              const alpha = i / pts.length
+              pCtx.beginPath()
+              pCtx.strokeStyle = `rgba(239,68,68,${alpha * 0.7})`
+              pCtx.lineWidth = 1
+              const x1 = (pts[i - 1][0] / xRange + 1) * phaseCanvas.width / 2
+              const y1 = (-pts[i - 1][1] / vRange + 1) * phaseCanvas.height / 2
+              const x2 = (pts[i][0] / xRange + 1) * phaseCanvas.width / 2
+              const y2 = (-pts[i][1] / vRange + 1) * phaseCanvas.height / 2
+              pCtx.moveTo(x1, y1)
+              pCtx.lineTo(x2, y2)
+              pCtx.stroke()
+            }
+          }
+        }
+      }
+
       frameRef.current = requestAnimationFrame(draw)
     }
 
@@ -492,7 +666,18 @@ function SpringMassOscillator() {
       <p className="text-white/40 text-xs mb-4">Hooke&apos;s law in action — the same physics governing a heart chamber filling, a building swaying in wind, and atoms vibrating in molecules.</p>
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="w-full overflow-x-auto rounded-xl bg-slate-950/80 pb-2">
-          <svg ref={svgRef} width="400" height="340" className="mx-auto" />
+          <svg ref={svgRef} width="400" height="420" className="mx-auto" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-[10px] text-white/30 mb-1 uppercase tracking-wider">Phase Space (x vs v)</p>
+            <canvas ref={phaseRef} width="120" height="120" className="rounded-lg" style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.05)' }} />
+          </div>
+          <div className="text-[10px] text-white/30 leading-relaxed mt-1">
+            <span className="text-orange-400">KE</span> = kinetic energy (orange)
+            <br />
+            <span className="text-green-400">PE</span> = potential energy (green)
+          </div>
         </div>
         <div className="flex flex-col gap-3 lg:w-48">
           <div>
