@@ -27,7 +27,7 @@
 | # | Sim | Tech | Plane ID | Status | CEO Verified |
 |---|-----|------|----------|--------|--------------|
 | 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | [x] | ✅ 2026-03-23 |
-| 11 | B: Mathematics — function grapher, fractals | D3 | `0ee4eccb` | [ ] | ⏳ needs CEO |
+| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | [ ] | ✅ 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | [ ] | ⏳ needs CEO |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | [ ] | ⏳ needs CEO |
 

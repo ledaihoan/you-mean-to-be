@@ -28,8 +28,8 @@
 
 | # | Sim | Tech | Plane ID | Status | Content Plan |
 |---|-----|------|----------|--------|--------------|
-| 10 | A: Physics — pendulum, gravity, waves | D3 + matter.js | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
-| 11 | B: Mathematics — function grapher, fractals | D3 | `0ee4eccb` | Todo | CEO verification needed |
+| 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
+| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | Todo | ✅ CEO verified 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | CEO verification needed |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | CEO verification needed |
 
@@ -49,7 +49,7 @@
 
 ## Current Sprint Focus
 
-**Next up:** CEO verify Math content plan → Math sim (issue #11)
+**Next up:** Eng builds Math sim (issue #11) — CEO verified 2026-03-25
 
 ## Decisions Made
 
@@ -73,3 +73,4 @@
 | 2026-03-23 | Phase 2A Physics complete. QA'd existing implementation on branch sim/physics-simulation. Found Docker image was 17h old (pre-physics). Rebuilt and redeployed. All 7 routes return HTTP 200. Plane #10 → Done. Build passes, tests pass (2/2). Docker fully live. | **Next: CEO verify Math content plan → Math sim** |
 | 2026-03-25 | Eng agent session: QA'd Physics on branch — found 3 missing AC items (D3 period chart, phase space plot, energy bar). Added all 3. Merged sim/physics-simulation → main. Deployed Docker. All 9 routes 200. Physics sim now fully meets AC. Plane #10 already marked Done. | **Blocked: CEO verify Math content plan → Math sim #11** |
 | 2026-03-25 | Galaxy performance fix: NormalBlending (was AdditiveBlending), remove mipmapBlur, default 20K→8K particles, cap DPR at 1.5, clamp point size at 40px, GPU tier detection, antialias off, enable damping. Build passes. Pushed to main. Plane env vars fixed in bashrc (moved before interactive guard). Plane CLI verified working. | **CEO verify Math content plan → Math sim #11** |
+| 2026-03-25 | CEO session: Accepted Physics (#10) — all AC met. Verified Math content plan (#11) — updated Plane issue with expanded plan. Theme: "The Math Behind Nature's Design." 3 blog posts: Fibonacci/Golden Ratio, Fractals in biology, Fourier transform in the brain. 3 demos: function grapher, Fibonacci spiral explorer, Mandelbrot zoomer. Plane #11 → Todo. Eng unblocked. | **Eng: build Math sim #11** |
