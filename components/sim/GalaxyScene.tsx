@@ -1,10 +1,20 @@
 'use client'
 
-import { useRef, useMemo, useState } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import * as THREE from 'three'
+
+// ─── GPU tier detection ────────────────────────────────────────────────────────
+function getGPULevel(): 'low' | 'medium' | 'high' {
+  if (typeof window === 'undefined') return 'high'
+  const dpr = window.devicePixelRatio || 1
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)
+  if (isMobile || dpr <= 1) return 'low'
+  if (dpr <= 1.5) return 'medium'
+  return 'high'
+}
 
 // ─── GLSL Vertex Shader ──────────────────────────────────────────────────────
 const vertexShader = /* glsl */`
@@ -13,7 +23,6 @@ const vertexShader = /* glsl */`
 
   attribute float aScale;
   attribute vec3 aColor;
-  attribute vec3 aRandomness;
 
   varying vec3 vColor;
   varying float vAlpha;
@@ -33,9 +42,9 @@ const vertexShader = /* glsl */`
 
     gl_Position = projectedPosition;
 
-    // Size scales with distance for depth
+    // Size scales with distance for depth, clamped to avoid huge fill rate
     gl_PointSize = uSize * aScale * (300.0 / -viewPosition.z);
-    gl_PointSize = max(gl_PointSize, 1.0);
+    gl_PointSize = clamp(gl_PointSize, 1.0, 40.0);
 
     vColor = aColor;
     vAlpha = aScale;
@@ -67,71 +76,68 @@ interface GalaxyProps {
   thickness?: number
 }
 
-function Galaxy({ count = 20000, arms = 3, radius = 8, thickness = 1.2 }: GalaxyProps) {
+function generateGalaxy(count: number, arms: number, radius: number, thickness: number) {
+  const positions = new Float32Array(count * 3)
+  const colors = new Float32Array(count * 3)
+  const scales = new Float32Array(count)
+
+  for (let i = 0; i < count; i++) {
+    const i3 = i * 3
+
+    // Spiral arm selection
+    const arm = i % arms
+    const armAngle = (arm / arms) * Math.PI * 2
+
+    // Distance from center (bias toward core)
+    const r = Math.pow(Math.random(), 0.5) * radius
+
+    // Spiral angle based on distance
+    const spiralAngle = armAngle + (r / radius) * Math.PI * 2.5
+
+    // Add scatter perpendicular to arm
+    const scatter = (Math.random() - 0.5) * (r / radius) * 0.8
+    const scatterAngle = spiralAngle + Math.PI / 2
+
+    positions[i3] = Math.cos(spiralAngle) * r + Math.cos(scatterAngle) * scatter
+    positions[i3 + 1] = (Math.random() - 0.5) * thickness * (1 - r / radius)
+    positions[i3 + 2] = Math.sin(spiralAngle) * r + Math.sin(scatterAngle) * scatter
+
+    // Color gradient: blue-white core → orange-red arms
+    const t = r / radius
+    if (t < 0.15) {
+      colors[i3] = 0.8 + Math.random() * 0.2
+      colors[i3 + 1] = 0.9 + Math.random() * 0.1
+      colors[i3 + 2] = 1.0
+    } else if (t < 0.4) {
+      const s = (t - 0.15) / 0.25
+      colors[i3] = 0.7 + s * 0.1
+      colors[i3 + 1] = 0.8 + s * 0.1
+      colors[i3 + 2] = 1.0 - s * 0.2
+    } else if (t < 0.7) {
+      const s = (t - 0.4) / 0.3
+      colors[i3] = 1.0
+      colors[i3 + 1] = 0.9 - s * 0.3
+      colors[i3 + 2] = 0.8 - s * 0.6
+    } else {
+      const s = (t - 0.7) / 0.3
+      colors[i3] = 1.0
+      colors[i3 + 1] = 0.5 - s * 0.4
+      colors[i3 + 2] = 0.2 - s * 0.2
+    }
+
+    scales[i] = Math.random() * 0.8 + 0.2
+  }
+
+  return { positions, colors, scales }
+}
+
+function Galaxy({ count = 8000, arms = 3, radius = 8, thickness = 1.2 }: GalaxyProps) {
   const pointsRef = useRef<THREE.Points>(null)
   const materialRef = useRef<THREE.ShaderMaterial>(null)
 
-  const { positions, colors, scales, randoms } = useMemo(() => {
-    const positions = new Float32Array(count * 3)
-    const colors = new Float32Array(count * 3)
-    const scales = new Float32Array(count)
-    const randoms = new Float32Array(count * 3)
-
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3
-
-      // Spiral arm selection
-      const arm = i % arms
-      const armAngle = (arm / arms) * Math.PI * 2
-
-      // Distance from center (bias toward core)
-      const r = Math.pow(Math.random(), 0.5) * radius
-
-      // Spiral angle based on distance
-      const spiralAngle = armAngle + (r / radius) * Math.PI * 2.5
-
-      // Add scatter perpendicular to arm
-      const scatter = (Math.random() - 0.5) * (r / radius) * 0.8
-      const scatterAngle = spiralAngle + Math.PI / 2
-
-      positions[i3] = Math.cos(spiralAngle) * r + Math.cos(scatterAngle) * scatter
-      positions[i3 + 1] = (Math.random() - 0.5) * thickness * (1 - r / radius)
-      positions[i3 + 2] = Math.sin(spiralAngle) * r + Math.sin(scatterAngle) * scatter
-
-      // Color gradient: blue-white core → orange-red arms
-      const t = r / radius
-      if (t < 0.15) {
-        // Core: bright blue-white
-        colors[i3] = 0.8 + Math.random() * 0.2
-        colors[i3 + 1] = 0.9 + Math.random() * 0.1
-        colors[i3 + 2] = 1.0
-      } else if (t < 0.4) {
-        // Inner disk: blue-white
-        const s = (t - 0.15) / 0.25
-        colors[i3] = 0.7 + s * 0.1
-        colors[i3 + 1] = 0.8 + s * 0.1
-        colors[i3 + 2] = 1.0 - s * 0.2
-      } else if (t < 0.7) {
-        // Mid disk: yellow-white
-        const s = (t - 0.4) / 0.3
-        colors[i3] = 1.0
-        colors[i3 + 1] = 0.9 - s * 0.3
-        colors[i3 + 2] = 0.8 - s * 0.6
-      } else {
-        // Outer arms: orange-red
-        const s = (t - 0.7) / 0.3
-        colors[i3] = 1.0
-        colors[i3 + 1] = 0.5 - s * 0.4
-        colors[i3 + 2] = 0.2 - s * 0.2
-      }
-
-      scales[i] = Math.random() * 0.8 + 0.2
-      randoms[i3] = (Math.random() - 0.5) * 0.1
-      randoms[i3 + 1] = (Math.random() - 0.5) * 0.1
-      randoms[i3 + 2] = (Math.random() - 0.5) * 0.1
-    }
-
-    return { positions, colors, scales, randoms }
+  const { positions, colors, scales } = useMemo(() => {
+    return generateGalaxy(count, arms, radius, thickness)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, arms, radius, thickness])
 
   useFrame(({ clock }) => {
@@ -155,10 +161,6 @@ function Galaxy({ count = 20000, arms = 3, radius = 8, thickness = 1.2 }: Galaxy
           attach="attributes-aScale"
           args={[scales, 1]}
         />
-        <bufferAttribute
-          attach="attributes-aRandomness"
-          args={[randoms, 3]}
-        />
       </bufferGeometry>
       <shaderMaterial
         ref={materialRef}
@@ -170,7 +172,7 @@ function Galaxy({ count = 20000, arms = 3, radius = 8, thickness = 1.2 }: Galaxy
         }}
         transparent
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={THREE.NormalBlending}
       />
     </points>
   )
@@ -210,7 +212,7 @@ function ControlPanel({ arms, density, onArmsChange, onDensityChange }: Controls
         <input
           type="range"
           min={5}
-          max={30}
+          max={15}
           step={5}
           value={density}
           onChange={e => onDensityChange(Number(e.target.value))}
@@ -223,13 +225,24 @@ function ControlPanel({ arms, density, onArmsChange, onDensityChange }: Controls
 
 export default function GalaxyScene() {
   const [arms, setArms] = useState(3)
-  const [density, setDensity] = useState(20)
+  const [density, setDensity] = useState(8)
+  const [dpr, setDpr] = useState(1)
+
+  // Detect GPU tier on mount
+  useEffect(() => {
+    setDpr(Math.min(window.devicePixelRatio || 1, 1.5))
+    const level = getGPULevel()
+    if (level === 'low') setDensity(5)
+    else if (level === 'medium') setDensity(8)
+    else setDensity(10)
+  }, [])
 
   return (
     <div className="w-full relative" style={{ height: '80vh' }}>
       <Canvas
         camera={{ position: [0, 10, 12], fov: 60 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        dpr={dpr}
       >
         <color attach="background" args={['#020208']} />
 
@@ -241,14 +254,15 @@ export default function GalaxyScene() {
           maxDistance={25}
           autoRotate
           autoRotateSpeed={0.15}
+          enableDamping
+          dampingFactor={0.05}
         />
 
         <EffectComposer>
           <Bloom
-            intensity={1.5}
-            luminanceThreshold={0.1}
+            intensity={1.0}
+            luminanceThreshold={0.3}
             luminanceSmoothing={0.9}
-            mipmapBlur
           />
         </EffectComposer>
       </Canvas>
