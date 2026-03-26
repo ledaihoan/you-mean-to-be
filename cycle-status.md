@@ -30,8 +30,15 @@
 |---|-----|------|----------|--------|--------------|
 | 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
 | 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | ✅ CEO verified 2026-03-25 |
-| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | CEO verification needed |
-| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | CEO verification needed |
+| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | ✅ CEO verified 2026-03-26 |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Backlog | ✅ CEO verified 2026-03-26 |
+| 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | Backlog | ✅ CEO approved 2026-03-26 |
+| 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | ✅ CEO approved 2026-03-26 |
+
+**Phase 2 Theme Arc:**
+A→B→C→D→E→F = "Understanding Nature from Cosmos to Consciousness"
+- Physics: forces and motion | Math: patterns and structure | Nutrition: energy and metabolism
+- Earth: why life exists | Atomic: why matter feels solid | Brain: why you exist
 
 **Remaining Phase 1 tech debt (non-blocking):**
 - Cloudflare: bind ymtb.uplatepal.com → :7239 (manual dashboard step)
@@ -49,7 +56,8 @@
 
 ## Current Sprint Focus
 
-**Next up:** CEO verify Nutrition content plan (issue #12)
+**Next up:** Engineering — build Nutrition sim #12 (CEO verified: "What You Are Is What You Ate")
+After #12 → Earth #13 → Atomic #14 → Brain #15
 
 ## Decisions Made
 
@@ -75,3 +83,4 @@
 | 2026-03-25 | Galaxy performance fix: NormalBlending (was AdditiveBlending), remove mipmapBlur, default 20K→8K particles, cap DPR at 1.5, clamp point size at 40px, GPU tier detection, antialias off, enable damping. Build passes. Pushed to main. Plane env vars fixed in bashrc (moved before interactive guard). Plane CLI verified working. | **CEO verify Math content plan → Math sim #11** |
 | 2026-03-25 | CEO session: Accepted Physics (#10) — all AC met. Verified Math content plan (#11) — updated Plane issue with expanded plan. Theme: "The Math Behind Nature's Design." 3 blog posts: Fibonacci/Golden Ratio, Fractals in biology, Fourier transform in the brain. 3 demos: function grapher, Fibonacci spiral explorer, Mandelbrot zoomer. Plane #11 → Todo. Eng unblocked. | **Eng: build Math sim #11** |
 | 2026-03-26 | Phase 2B Math complete. Built MathScene.tsx (628 lines, 4 demos): Function Grapher (sine/cos/poly/exp, canvas+D3 axes), Fibonacci Spiral (animated golden spiral, φ convergence), Mandelbrot (click-to-zoom, HSL color gradient), Fourier Waveform (harmonic stacker, animated). 3 blog posts: Fibonacci-Nature (φ in sunflowers), Fractals-Lungs (fractal dimension in biology), Fourier-Brain (cochlear frequency analysis). Homepage updated with Math card. Build passes. Tests pass (2/2). Merged to main. Docker deployed. 9/9 routes 200. Plane #11 → Done. | **CEO verify Nutrition content plan → #12** |
+| 2026-03-26 | CEO session: Accepted Math #11 ✅. Verified Nutrition #12 — expanded from 1 post/sim to 3 posts/3 demos. Theme: "What You Are Is What You Ate." Posts: Slow Fire (metabolism/ATP), Hormone Orchestra (leptin/ghrelin/insulin), Soil to Cell (autotrophy/heterotrophy + energy transfer). Verified Earth #13 — theme expanded to "Why Life Exists." Posts: Goldilocks Accident (rare Earth conditions), Carbon Chain (why carbon won), Energy Gradient (why life is a process not a thing). Created Phase 2E #14 Atomic World — empty space, electric self (why touch feels solid), four forces. Created Phase 2F #15 Brain — prediction machine (free energy), narrative self (DMN), time perception. All content plans in Plane with full AC. Phase 2 arc: A→B→C→D→E→F = "Understanding Nature: Cosmos to Consciousness." Eng unblocked on Nutrition #12. | **Eng: build Nutrition sim #12** |
