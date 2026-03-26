@@ -1,6 +1,6 @@
 # YouMeanToBe — Project Status
 
-> Last updated: 2026-03-25
+> Last updated: 2026-03-26
 > Plane project: You Mean To Be (`160f99ff-c130-4caf-83c8-14361163ba7b`)
 > Target: ymtb.uplatepal.com live by 2026-04-19 → youmeantobe.com upgrade at Phase 1 end
 > Phase 1 Cycle: `ef2f68b0-169b-4005-8d85-eeaec6da6f5f` (2026-03-22 → 2026-04-19)
@@ -29,7 +29,7 @@
 | # | Sim | Tech | Plane ID | Status | Content Plan |
 |---|-----|------|----------|--------|--------------|
 | 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
-| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | Todo | ✅ CEO verified 2026-03-25 |
+| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | ✅ CEO verified 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | Todo | CEO verification needed |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Todo | CEO verification needed |
 
@@ -49,7 +49,7 @@
 
 ## Current Sprint Focus
 
-**Next up:** Eng builds Math sim (issue #11) — CEO verified 2026-03-25
+**Next up:** CEO verify Nutrition content plan (issue #12)
 
 ## Decisions Made
 
@@ -74,3 +74,4 @@
 | 2026-03-25 | Eng agent session: QA'd Physics on branch — found 3 missing AC items (D3 period chart, phase space plot, energy bar). Added all 3. Merged sim/physics-simulation → main. Deployed Docker. All 9 routes 200. Physics sim now fully meets AC. Plane #10 already marked Done. | **Blocked: CEO verify Math content plan → Math sim #11** |
 | 2026-03-25 | Galaxy performance fix: NormalBlending (was AdditiveBlending), remove mipmapBlur, default 20K→8K particles, cap DPR at 1.5, clamp point size at 40px, GPU tier detection, antialias off, enable damping. Build passes. Pushed to main. Plane env vars fixed in bashrc (moved before interactive guard). Plane CLI verified working. | **CEO verify Math content plan → Math sim #11** |
 | 2026-03-25 | CEO session: Accepted Physics (#10) — all AC met. Verified Math content plan (#11) — updated Plane issue with expanded plan. Theme: "The Math Behind Nature's Design." 3 blog posts: Fibonacci/Golden Ratio, Fractals in biology, Fourier transform in the brain. 3 demos: function grapher, Fibonacci spiral explorer, Mandelbrot zoomer. Plane #11 → Todo. Eng unblocked. | **Eng: build Math sim #11** |
+| 2026-03-26 | Phase 2B Math complete. Built MathScene.tsx (628 lines, 4 demos): Function Grapher (sine/cos/poly/exp, canvas+D3 axes), Fibonacci Spiral (animated golden spiral, φ convergence), Mandelbrot (click-to-zoom, HSL color gradient), Fourier Waveform (harmonic stacker, animated). 3 blog posts: Fibonacci-Nature (φ in sunflowers), Fractals-Lungs (fractal dimension in biology), Fourier-Brain (cochlear frequency analysis). Homepage updated with Math card. Build passes. Tests pass (2/2). Merged to main. Docker deployed. 9/9 routes 200. Plane #11 → Done. | **CEO verify Nutrition content plan → #12** |
