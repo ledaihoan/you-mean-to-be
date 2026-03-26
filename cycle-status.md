@@ -22,23 +22,25 @@
 
 ---
 
-## Phase 2 — Sim-First Order (CEO approved: A→B→C→D)
+## Phase 2 — Sim-First Order (CEO approved: E→D→F, 2026-03-26)
 
 **Rule: Content plan must be verified by CEO before building each sim.**
 
 | # | Sim | Tech | Plane ID | Status | Content Plan |
 |---|-----|------|----------|--------|--------------|
 | 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
-| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | ✅ CEO verified 2026-03-25 |
-| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | **Done ✅** | ✅ CEO verified 2026-03-26 |
-| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Backlog | ✅ CEO verified 2026-03-26 |
-| 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | Backlog | ✅ CEO approved 2026-03-26 |
-| 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | ✅ CEO approved 2026-03-26 |
+| 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | CEO verified 2026-03-25 |
+| 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | **Done ✅** | CEO verified 2026-03-26 |
+| 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | **Todo** | CEO verified 2026-03-26 |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Backlog | CEO verified 2026-03-26 |
+| 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | CEO verified 2026-03-26 |
 
 **Phase 2 Theme Arc:**
-A→B→C→D→E→F = "Understanding Nature from Cosmos to Consciousness"
+A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 - Physics: forces and motion | Math: patterns and structure | Nutrition: energy and metabolism
-- Earth: why life exists | Atomic: why matter feels solid | Brain: why you exist
+- **Atomic: why matter feels solid** | Earth: why life exists | Brain: why you exist
+
+**Phase 2 retro (2026-03-26):** 3 sims in 4 days (~1 sim/day). ~2000 LOC simulation code. 9 blog posts shipped. Key lesson: QA on branch before merging catches missing AC early.
 
 **Remaining Phase 1 tech debt (non-blocking):**
 - Cloudflare: bind ymtb.uplatepal.com → :7239 (manual dashboard step)
@@ -56,8 +58,8 @@ A→B→C→D→E→F = "Understanding Nature from Cosmos to Consciousness"
 
 ## Current Sprint Focus
 
-**Next up:** CEO verify Earth #13 content plan → Earth sim #13
-After #13 → Atomic #14 → Brain #15
+**Next up:** Atomic World #14 → Earth #13 → Brain #15
+**After Phase 2:** User profiles + community (Phase 3 priority)
 
 ## Decisions Made
 
@@ -65,6 +67,9 @@ After #13 → Atomic #14 → Brain #15
 - [x] **Tunnel:** Existing MiseOS Cloudflare Tunnel — port 7239 for Nginx, port 7139 for Next.js local dev
 - [x] **Postgres:** Separate instance, exposed on port 5433 via Tailscale for laptop management
 - [x] **Port mapping:** Nginx=7239 (external), Next.js=7139 (local dev), Postgres=5433 (Tailscale)
+- [x] **Platform model:** Free sims + blog → Paid courses (deep dives + coaching + project-based)
+- [x] **Phase 2 sim order:** E→D→F (Atomic → Earth → Brain, per CEO 2026-03-26)
+- [x] **Phase 3 priority:** User profiles + community (after Phase 2 sims complete)
 
 ## Session Log
 
@@ -85,3 +90,4 @@ After #13 → Atomic #14 → Brain #15
 | 2026-03-26 | Phase 2B Math complete. Built MathScene.tsx (628 lines, 4 demos): Function Grapher (sine/cos/poly/exp, canvas+D3 axes), Fibonacci Spiral (animated golden spiral, φ convergence), Mandelbrot (click-to-zoom, HSL color gradient), Fourier Waveform (harmonic stacker, animated). 3 blog posts: Fibonacci-Nature (φ in sunflowers), Fractals-Lungs (fractal dimension in biology), Fourier-Brain (cochlear frequency analysis). Homepage updated with Math card. Build passes. Tests pass (2/2). Merged to main. Docker deployed. 9/9 routes 200. Plane #11 → Done. | **CEO verify Nutrition content plan → #12** |
 | 2026-03-26 | CEO session: Accepted Math #11 ✅. Verified Nutrition #12 — expanded from 1 post/sim to 3 posts/3 demos. Theme: "What You Are Is What You Ate." Posts: Slow Fire (metabolism/ATP), Hormone Orchestra (leptin/ghrelin/insulin), Soil to Cell (autotrophy/heterotrophy + energy transfer). Verified Earth #13 — theme expanded to "Why Life Exists." Posts: Goldilocks Accident (rare Earth conditions), Carbon Chain (why carbon won), Energy Gradient (why life is a process not a thing). Created Phase 2E #14 Atomic World — empty space, electric self (why touch feels solid), four forces. Created Phase 2F #15 Brain — prediction machine (free energy), narrative self (DMN), time perception. All content plans in Plane with full AC. Phase 2 arc: A→B→C→D→E→F = "Understanding Nature: Cosmos to Consciousness." Eng unblocked on Nutrition #12. | **Eng: build Nutrition sim #12** |
 | 2026-03-26 | Phase 2C Nutrition complete. Built NutritionScene.tsx (700+ lines, 3 demos): Macro Calculator (BMR/TDEE with Mifflin-St Jeor, D3 pie+bar charts), Meal Builder (28-food database, D3 stacked bar+pie charts), Energy Pyramid (trophic levels with D3 pyramid+Sankey). 3 blog posts (700+ words each): metabolism-fire (ATP/mitochondria), hunger-hormones (leptin/ghrelin/insulin/cortisol), soil-to-cell (autotrophy/heterotrophy/10% rule). Homepage updated with Nutrition sim card. Build passes (24/24 pages). Tests pass (2/2). Pushed to main. Docker rebuilt and redeployed. 9/9 routes 200. Plane #12 → Done. | **CEO: verify Earth #13 content plan → Earth sim** |
+| 2026-03-26 | Retro + roadmap session. 12/15 Plane issues done. Velocity: ~1 sim/day. New decisions: platform = free sims+blog + paid courses (deep dives + coaching + projects); Phase 2 sim order changed to E→D→F; Phase 3 priority = user profiles + community. Updated cycle-status.md + engineering-backlog.md with new roadmap. | **Eng: build Atomic World #14 (next)** |
