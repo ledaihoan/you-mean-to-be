@@ -197,6 +197,17 @@ export default function HomePage() {
                 <p className="text-white/40 text-xs mt-1">Macros · Meal Builder · Energy Pyramid</p>
               </div>
             </Link>
+            <Link
+              href="/simulations/atomic"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 hover:border-white/20 transition-all p-6 min-h-[160px] flex flex-col justify-end"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.15),transparent_70%)]" />
+              <div className="relative">
+                <p className="text-white/40 text-xs mb-1 font-medium uppercase tracking-wider">Simulation</p>
+                <p className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Atomic World</p>
+                <p className="text-white/40 text-xs mt-1">Scale Journey · Force Fields · Solidity</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
