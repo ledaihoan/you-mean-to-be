@@ -31,7 +31,7 @@
 | 10 | A: Physics — pendulum, gravity, waves | D3 + SVG + Canvas | `0ccf6645` | **Done ✅** | CEO verified 2026-03-23 |
 | 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | CEO verified 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | **Done ✅** | CEO verified 2026-03-26 |
-| 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | **Todo** | CEO verified 2026-03-26 |
+| 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | **Done ✅** | CEO verified 2026-03-26 |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Backlog | CEO verified 2026-03-26 |
 | 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | CEO verified 2026-03-26 |
 
@@ -58,7 +58,7 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 
 ## Current Sprint Focus
 
-**Next up:** Atomic World #14 → Earth #13 → Brain #15
+**Next up:** Earth #13 → Brain #15 (Atomic #14 done ✅)
 **After Phase 2:** User profiles + community (Phase 3 priority)
 
 ## Decisions Made
@@ -91,3 +91,4 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | 2026-03-26 | CEO session: Accepted Math #11 ✅. Verified Nutrition #12 — expanded from 1 post/sim to 3 posts/3 demos. Theme: "What You Are Is What You Ate." Posts: Slow Fire (metabolism/ATP), Hormone Orchestra (leptin/ghrelin/insulin), Soil to Cell (autotrophy/heterotrophy + energy transfer). Verified Earth #13 — theme expanded to "Why Life Exists." Posts: Goldilocks Accident (rare Earth conditions), Carbon Chain (why carbon won), Energy Gradient (why life is a process not a thing). Created Phase 2E #14 Atomic World — empty space, electric self (why touch feels solid), four forces. Created Phase 2F #15 Brain — prediction machine (free energy), narrative self (DMN), time perception. All content plans in Plane with full AC. Phase 2 arc: A→B→C→D→E→F = "Understanding Nature: Cosmos to Consciousness." Eng unblocked on Nutrition #12. | **Eng: build Nutrition sim #12** |
 | 2026-03-26 | Phase 2C Nutrition complete. Built NutritionScene.tsx (700+ lines, 3 demos): Macro Calculator (BMR/TDEE with Mifflin-St Jeor, D3 pie+bar charts), Meal Builder (28-food database, D3 stacked bar+pie charts), Energy Pyramid (trophic levels with D3 pyramid+Sankey). 3 blog posts (700+ words each): metabolism-fire (ATP/mitochondria), hunger-hormones (leptin/ghrelin/insulin/cortisol), soil-to-cell (autotrophy/heterotrophy/10% rule). Homepage updated with Nutrition sim card. Build passes (24/24 pages). Tests pass (2/2). Pushed to main. Docker rebuilt and redeployed. 9/9 routes 200. Plane #12 → Done. | **CEO: verify Earth #13 content plan → Earth sim** |
 | 2026-03-26 | Retro + roadmap session. 12/15 Plane issues done. Velocity: ~1 sim/day. New decisions: platform = free sims+blog + paid courses (deep dives + coaching + projects); Phase 2 sim order changed to E→D→F; Phase 3 priority = user profiles + community. Updated cycle-status.md + engineering-backlog.md with new roadmap. | **Eng: build Atomic World #14 (next)** |
+| 2026-03-29 | Phase 2E Atomic World complete. Built AtomicScene.tsx (~800 LOC, 3 demos): Scale Journey (7 scales, D3 log chart), Force Field (Canvas+D3 field lines, click charges), Solidity Explainer (Pauli exclusion, D3 mechanoreceptor chart). 3 blog posts (empty-space, electric-self, four-forces). Homepage updated with Atomic card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #14 → Done. | **Next: Earth #13 or CEO verify next priorities** |
