@@ -30,7 +30,7 @@
 | 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | [x] | ✅ 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | [x] | ✅ 2026-03-26 |
 | 14 | E: Atomic World — empty space, electric self, four forces | D3 + Canvas | `914f4f0e` | [x] | ✅ 2026-03-26 |
-| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | [ ] | ✅ 2026-03-26 |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | [x] | ✅ 2026-03-26 |
 | 15 | F: Brain & Consciousness — prediction machine, narrative self | D3 + Canvas | `3a19e921` | [ ] | ✅ 2026-03-26 |
 
 ## How to Work an Issue

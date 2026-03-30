@@ -1,6 +1,6 @@
 # YouMeanToBe — Project Status
 
-> Last updated: 2026-03-26
+> Last updated: 2026-03-30
 > Plane project: You Mean To Be (`160f99ff-c130-4caf-83c8-14361163ba7b`)
 > Target: ymtb.uplatepal.com live by 2026-04-19 → youmeantobe.com upgrade at Phase 1 end
 > Phase 1 Cycle: `ef2f68b0-169b-4005-8d85-eeaec6da6f5f` (2026-03-22 → 2026-04-19)
@@ -32,7 +32,7 @@
 | 11 | B: Mathematics — function grapher, fractals | D3 + Canvas | `0ee4eccb` | **Done ✅** | CEO verified 2026-03-25 |
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | **Done ✅** | CEO verified 2026-03-26 |
 | 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | **Done ✅** | CEO verified 2026-03-26 |
-| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | Backlog | CEO verified 2026-03-26 |
+| 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | **Done ✅** | CEO verified 2026-03-26 |
 | 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | CEO verified 2026-03-26 |
 
 **Phase 2 Theme Arc:**
@@ -58,7 +58,7 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 
 ## Current Sprint Focus
 
-**Next up:** Earth #13 → Brain #15 (Atomic #14 done ✅)
+**Next up:** Brain #15 (Earth #13 done ✅, Atomic #14 done ✅)
 **After Phase 2:** User profiles + community (Phase 3 priority)
 
 ## Decisions Made
@@ -92,3 +92,4 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | 2026-03-26 | Phase 2C Nutrition complete. Built NutritionScene.tsx (700+ lines, 3 demos): Macro Calculator (BMR/TDEE with Mifflin-St Jeor, D3 pie+bar charts), Meal Builder (28-food database, D3 stacked bar+pie charts), Energy Pyramid (trophic levels with D3 pyramid+Sankey). 3 blog posts (700+ words each): metabolism-fire (ATP/mitochondria), hunger-hormones (leptin/ghrelin/insulin/cortisol), soil-to-cell (autotrophy/heterotrophy/10% rule). Homepage updated with Nutrition sim card. Build passes (24/24 pages). Tests pass (2/2). Pushed to main. Docker rebuilt and redeployed. 9/9 routes 200. Plane #12 → Done. | **CEO: verify Earth #13 content plan → Earth sim** |
 | 2026-03-26 | Retro + roadmap session. 12/15 Plane issues done. Velocity: ~1 sim/day. New decisions: platform = free sims+blog + paid courses (deep dives + coaching + projects); Phase 2 sim order changed to E→D→F; Phase 3 priority = user profiles + community. Updated cycle-status.md + engineering-backlog.md with new roadmap. | **Eng: build Atomic World #14 (next)** |
 | 2026-03-29 | Phase 2E Atomic World complete. Built AtomicScene.tsx (~800 LOC, 3 demos): Scale Journey (7 scales, D3 log chart), Force Field (Canvas+D3 field lines, click charges), Solidity Explainer (Pauli exclusion, D3 mechanoreceptor chart). 3 blog posts (empty-space, electric-self, four-forces). Homepage updated with Atomic card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #14 → Done. | **Next: Earth #13 or CEO verify next priorities** |
+| 2026-03-30 | Phase 2D Earth ecosystem complete. Built EarthScene.tsx (~750 LOC, 3 demos): Biome Explorer (R3F 3D globe, 8 biomes, click-to-info, climate slider), Food Chain Web (D3 directed graph, 10 species, species removal cascade), Ecosystem Balance (D3 Lotka-Volterra predator-prey, 6 param sliders, real-time animation). 3 blog posts (goldilocks-accident 700 words, carbon-chain-life 700 words, energy-gradient-life 700 words). Homepage updated with Earth card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #13 → Done. | **Next: Brain #15** |
