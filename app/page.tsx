@@ -72,7 +72,7 @@ export default function HomePage() {
         <div className="relative max-w-4xl mx-auto px-6 pt-24 pb-32 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            17 articles &middot; 7 simulations &middot; 4 age collections
+            20 articles &middot; 7 simulations &middot; 4 age collections
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
@@ -193,7 +193,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-bold text-white mb-2">Live Simulations</h2>
             <p className="text-white/40 text-sm">Real-time WebGL — no plugins needed</p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { href: '/simulations/solar-system', title: 'Solar System', sub: '8 planets \u00b7 orbit controls', glow: 'rgba(59,130,246,0.15)', hover: 'blue' },
               { href: '/simulations/galaxy', title: 'Galaxy', sub: 'GLSL shaders \u00b7 bloom', glow: 'rgba(168,85,247,0.2)', hover: 'purple', bg: 'from-indigo-950' },
@@ -201,6 +201,8 @@ export default function HomePage() {
               { href: '/simulations/mathematics', title: 'Mathematics', sub: 'Fibonacci \u00b7 Fractals \u00b7 Fourier', glow: 'rgba(168,85,247,0.15)', hover: 'purple' },
               { href: '/simulations/nutrition', title: 'Nutrition', sub: 'Macros \u00b7 Meal Builder \u00b7 Energy Pyramid', glow: 'rgba(249,115,22,0.15)', hover: 'orange' },
               { href: '/simulations/earth', title: 'Earth Ecosystem', sub: 'Biomes \u00b7 Food Chain \u00b7 Lotka-Volterra', glow: 'rgba(34,197,94,0.15)', hover: 'emerald' },
+              { href: '/simulations/brain', title: 'Brain & Mind', sub: 'Prediction \u00b7 Self \u00b7 Time', glow: 'rgba(168,85,247,0.2)', hover: 'purple' },
+              { href: '/simulations/atomic', title: 'Atomic World', sub: 'Empty space \u00b7 Electric self', glow: 'rgba(59,130,246,0.15)', hover: 'blue', bg: 'from-indigo-950' },
             ].map(sim => (
               <Link
                 key={sim.href}
