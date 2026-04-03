@@ -20,7 +20,7 @@
 
 ---
 
-## Phase 2 — Sim-First (A→B→C→D, CEO verified)
+## Phase 2 — Sim-First (A→B→C→E→D→F, CEO verified) — COMPLETE ✅
 
 **Rule: CEO must verify content plan before building each sim.**
 
@@ -31,7 +31,15 @@
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | [x] | ✅ 2026-03-26 |
 | 14 | E: Atomic World — empty space, electric self, four forces | D3 + Canvas | `914f4f0e` | [x] | ✅ 2026-03-26 |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | [x] | ✅ 2026-03-26 |
-| 15 | F: Brain & Consciousness — prediction machine, narrative self | D3 + Canvas | `3a19e921` | [ ] | ✅ 2026-03-26 |
+| 15 | F: Brain & Consciousness — prediction machine, narrative self | D3 + Canvas | `3a19e921` | [x] | ✅ 2026-03-26 |
+
+## Phase 3 — Community (not started)
+
+| # | Issue | Priority | Plane ID | Status |
+|---|-------|----------|----------|--------|
+| 16 | User profiles (bio, avatar, saved posts) | high | — | [ ] |
+| 17 | Community posts / reactions | medium | — | [ ] |
+| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | [ ] |
 
 ## How to Work an Issue
 

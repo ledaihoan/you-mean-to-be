@@ -33,12 +33,14 @@
 | 12 | C: Nutrition — macro charts, meal builder | D3 | `ece1232c` | **Done ✅** | CEO verified 2026-03-26 |
 | 14 | E: Atomic World — empty space, electric self | D3 + Canvas | `914f4f0e` | **Done ✅** | CEO verified 2026-03-26 |
 | 13 | D: Earth ecosystem — biomes, food chain | R3F + D3 | `02b4f755` | **Done ✅** | CEO verified 2026-03-26 |
-| 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | Backlog | CEO verified 2026-03-26 |
+| 15 | F: Brain & Consciousness — prediction machine | D3 + Canvas | `3a19e921` | **Done ✅** | CEO verified 2026-03-26 |
 
 **Phase 2 Theme Arc:**
 A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 - Physics: forces and motion | Math: patterns and structure | Nutrition: energy and metabolism
 - **Atomic: why matter feels solid** | Earth: why life exists | Brain: why you exist
+
+**Phase 2 COMPLETE (2026-04-03).** 6 sims in ~2 weeks (~3.5 sims total since 03-23). ~6 sims × ~700 LOC each + 6 × 3 blog posts = ~4200 LOC total. 18 blog posts. Key lesson: QA on branch before merging catches missing AC early. 8 simulations, 20 articles, 4 age collections.
 
 **Phase 2 retro (2026-03-26):** 3 sims in 4 days (~1 sim/day). ~2000 LOC simulation code. 9 blog posts shipped. Key lesson: QA on branch before merging catches missing AC early.
 
@@ -58,7 +60,7 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 
 ## Current Sprint Focus
 
-**Next up:** Brain #15 (Earth #13 done ✅, Atomic #14 done ✅)
+**Next up:** Collections PR review + deploy, Phase 3 planning
 **After Phase 2:** User profiles + community (Phase 3 priority)
 
 ## Decisions Made
@@ -93,3 +95,5 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | 2026-03-26 | Retro + roadmap session. 12/15 Plane issues done. Velocity: ~1 sim/day. New decisions: platform = free sims+blog + paid courses (deep dives + coaching + projects); Phase 2 sim order changed to E→D→F; Phase 3 priority = user profiles + community. Updated cycle-status.md + engineering-backlog.md with new roadmap. | **Eng: build Atomic World #14 (next)** |
 | 2026-03-29 | Phase 2E Atomic World complete. Built AtomicScene.tsx (~800 LOC, 3 demos): Scale Journey (7 scales, D3 log chart), Force Field (Canvas+D3 field lines, click charges), Solidity Explainer (Pauli exclusion, D3 mechanoreceptor chart). 3 blog posts (empty-space, electric-self, four-forces). Homepage updated with Atomic card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #14 → Done. | **Next: Earth #13 or CEO verify next priorities** |
 | 2026-03-30 | Phase 2D Earth ecosystem complete. Built EarthScene.tsx (~750 LOC, 3 demos): Biome Explorer (R3F 3D globe, 8 biomes, click-to-info, climate slider), Food Chain Web (D3 directed graph, 10 species, species removal cascade), Ecosystem Balance (D3 Lotka-Volterra predator-prey, 6 param sliders, real-time animation). 3 blog posts (goldilocks-accident 700 words, carbon-chain-life 700 words, energy-gradient-life 700 words). Homepage updated with Earth card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #13 → Done. | **Next: Brain #15** |
+| 2026-04-03 | Collections feature complete: Age-based content organization (Explorers/Discoverers/Investigators/Deep Divers), AgeGroupCard + ArticleCard + DifficultyBadge components, /collections + /collections/[ageGroup] routes with category filters. All 17 posts tagged with ageGroup/category/difficulty frontmatter. Homepage redesigned. Fix: intro-to-glsl-shaders.mdx missing coverColor. Build: 37 routes 0 errors. Committed to feature/collections-age-groups. | **Next: Brain #15** |
+| 2026-04-03 | Phase 2F Brain & Consciousness complete. Built BrainScene.tsx (~910 LOC, 3 demos): Prediction Engine (hidden pattern challenge, D3 line chart accuracy tracker), Self Constructor (brain cross-section with 5 labeled regions, mental state slider), Time Perception Lab (interval estimation with 3 conditions, D3 box plot). 3 blog posts (brain-predicts-reality 700 words, self-as-story 700 words, time-flows-doesnt 700 words). Homepage updated: sim strip expanded to 8 sims, article count to 20. Build: 41 routes 0 errors. Tests: 2/2 pass. Plane #15 → Done. All Phase 2 sims complete (A→B→C→E→D→F). | **Phase 2 complete — prepare PRs for review** |
