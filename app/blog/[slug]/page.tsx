@@ -1,8 +1,10 @@
-import { getPostBySlug, getPostSlugs, AGE_GROUP_META, CATEGORY_META } from '@/lib/posts'
+import { getPostBySlug, getPostSlugs } from '@/lib/posts'
+import { AGE_GROUP_META, CATEGORY_META } from '@/types/post'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { DifficultyBadge } from '@/components/DifficultyBadge'
+import { BookmarkButton } from '@/components/BookmarkButton'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -76,6 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
             >
               {ageMeta.icon} {ageMeta.label}
             </Link>
+            <BookmarkButton postSlug={post.slug} />
           </div>
         </header>
 

@@ -32,6 +32,7 @@ export function Footer() {
             <div>
               <p className="text-white/50 font-medium mb-3">Account</p>
               <div className="space-y-2">
+                <Link href="/profile" className="block text-white/30 hover:text-white/70 transition-colors">Profile</Link>
                 <Link href="/auth/sign-in" className="block text-white/30 hover:text-white/70 transition-colors">Sign in</Link>
                 <Link href="/auth/sign-up" className="block text-white/30 hover:text-white/70 transition-colors">Sign up</Link>
               </div>

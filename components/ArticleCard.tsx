@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import type { Post } from '@/lib/posts'
-import { CATEGORY_META } from '@/lib/posts'
+import type { Post } from '@/types/post'
+import { CATEGORY_META } from '@/types/post'
 import { DifficultyBadge } from './DifficultyBadge'
 
 export function ArticleCard({ post }: { post: Post }) {

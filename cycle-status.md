@@ -40,7 +40,7 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 - Physics: forces and motion | Math: patterns and structure | Nutrition: energy and metabolism
 - **Atomic: why matter feels solid** | Earth: why life exists | Brain: why you exist
 
-**Phase 2 COMPLETE (2026-04-03).** 6 sims in ~2 weeks (~3.5 sims total since 03-23). ~6 sims × ~700 LOC each + 6 × 3 blog posts = ~4200 LOC total. 18 blog posts. Key lesson: QA on branch before merging catches missing AC early. 8 simulations, 20 articles, 4 age collections.
+**Phase 2 COMPLETE (2026-04-03).** 6 sims in ~2 weeks (~3.5 sims total since 03-23). ~4200 LOC total. 18 blog posts. 4 age collections. 8 simulations. Key lesson: QA on branch before merging catches missing AC early.
 
 **Phase 2 retro (2026-03-26):** 3 sims in 4 days (~1 sim/day). ~2000 LOC simulation code. 9 blog posts shipped. Key lesson: QA on branch before merging catches missing AC early.
 
@@ -58,10 +58,21 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
                └──→ #6 Solar System ──→ #7 Galaxy
 ```
 
+## Phase 3 — Community (planned, not started)
+
+| # | Issue | Priority | Plane ID | Status |
+|---|-------|----------|----------|--------|
+| 16 | User profiles (bio, avatar, saved posts) | high | — | [ ] |
+| 17 | Community posts / reactions | medium | — | [ ] |
+| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | [ ] |
+
+**Depends on:** #16 (user profiles unblocks community + auth context)
+
 ## Current Sprint Focus
 
-**Next up:** Collections PR review + deploy, Phase 3 planning
-**After Phase 2:** User profiles + community (Phase 3 priority)
+**Phase 3 starting.** #16 User Profiles first (unblocks #17 + #18). Check existing auth schema first, then design page.
+
+**Last session (2026-04-03):** Phase 2 complete — all 6 sims + collections deployed.
 
 ## Decisions Made
 
@@ -97,3 +108,4 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | 2026-03-30 | Phase 2D Earth ecosystem complete. Built EarthScene.tsx (~750 LOC, 3 demos): Biome Explorer (R3F 3D globe, 8 biomes, click-to-info, climate slider), Food Chain Web (D3 directed graph, 10 species, species removal cascade), Ecosystem Balance (D3 Lotka-Volterra predator-prey, 6 param sliders, real-time animation). 3 blog posts (goldilocks-accident 700 words, carbon-chain-life 700 words, energy-gradient-life 700 words). Homepage updated with Earth card. Build: 25 routes 0 errors. Tests: 2/2 pass. Docker: 11/11 routes 200. Plane #13 → Done. | **Next: Brain #15** |
 | 2026-04-03 | Collections feature complete: Age-based content organization (Explorers/Discoverers/Investigators/Deep Divers), AgeGroupCard + ArticleCard + DifficultyBadge components, /collections + /collections/[ageGroup] routes with category filters. All 17 posts tagged with ageGroup/category/difficulty frontmatter. Homepage redesigned. Fix: intro-to-glsl-shaders.mdx missing coverColor. Build: 37 routes 0 errors. Committed to feature/collections-age-groups. | **Next: Brain #15** |
 | 2026-04-03 | Phase 2F Brain & Consciousness complete. Built BrainScene.tsx (~910 LOC, 3 demos): Prediction Engine (hidden pattern challenge, D3 line chart accuracy tracker), Self Constructor (brain cross-section with 5 labeled regions, mental state slider), Time Perception Lab (interval estimation with 3 conditions, D3 box plot). 3 blog posts (brain-predicts-reality 700 words, self-as-story 700 words, time-flows-doesnt 700 words). Homepage updated: sim strip expanded to 8 sims, article count to 20. Build: 41 routes 0 errors. Tests: 2/2 pass. Plane #15 → Done. All Phase 2 sims complete (A→B→C→E→D→F). | **Phase 2 complete — prepare PRs for review** |
+| 2026-04-09 | Eng session: reviewed state — 15/15 Plane issues Done, build passes 41 routes 0 errors. Feature branches (brain, collections) already merged to main. Clean working tree. Updated cycle-status.md: Phase 3 section already present. better-auth stores user name/email/image in sessions table (extends PostgreSQL). Next: design + build #16 User Profiles (bio, avatar, saved posts). | Build #16 User Profiles |
