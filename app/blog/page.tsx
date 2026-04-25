@@ -6,6 +6,15 @@ import { ArticleCard } from '@/components/ArticleCard'
 export const metadata = {
   title: 'Blog — YouMeanToBe',
   description: 'Science explainers, tutorials, and reflections — deep dives into how the universe built you.',
+  openGraph: {
+    title: 'Blog — YouMeanToBe',
+    description: 'Science explainers, tutorials, and reflections — deep dives into how the universe built you.',
+    images: [{ url: '/api/og', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og'],
+  },
 }
 
 interface Props {

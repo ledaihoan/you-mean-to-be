@@ -14,9 +14,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return { title: 'Post Not Found' }
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://youmeantobe.com'
   return {
     title: `${post.title} — YouMeanToBe`,
     description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['YouMeanToBe'],
+      images: [
+        {
+          url: `${baseUrl}/api/og?slug=${encodeURIComponent(slug)}`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [`${baseUrl}/api/og?slug=${encodeURIComponent(slug)}`],
+    },
   }
 }
 
