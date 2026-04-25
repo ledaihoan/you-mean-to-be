@@ -75,20 +75,24 @@ Env:         PLANE_BASE_URL=https://api.plane.so
 - [x] Galaxy scene (R3F + ShaderMaterial GLSL)
 - [x] Smoke test: all routes 200, Docker stack live at localhost:7239
 
-### Phase 2 — Platform (weeks 5–12, SIM-FIRST, A→B→C→D)
-**Rule: content plan verified by CEO before building each sim.**
+### Phase 2 — Platform (COMPLETE ✅)
+- [x] A: Physics simulation — D3 + matter.js (Plane: `0ccf6645`)
+- [x] B: Mathematics simulation — D3 (Plane: `0ee4eccb`)
+- [x] C: Nutrition simulation — D3 (Plane: `ece1232c`)
+- [x] E: Atomic World — D3 + Canvas (Plane: `914f4f0e`)
+- [x] D: Earth ecosystem — R3F + D3 (Plane: `02b4f755`)
+- [x] F: Brain & Consciousness — D3 + Canvas (Plane: `3a19e921`)
+- [x] Age-based Collections — Explorers/Discoverers/Investigators/Deep Divers
+- [x] D3 chart components (reusable across blog posts)
 
-- [ ] A: Physics simulation — D3 + matter.js (Plane: `0ccf6645`)
-- [ ] B: Mathematics simulation — D3 (Plane: `0ee4eccb`)
-- [ ] C: Nutrition simulation — D3 (Plane: `ece1232c`)
-- [ ] D: Earth ecosystem — R3F + D3 (Plane: `02b4f755`)
-- [ ] User profiles (bio, avatar, saved posts)
-- [ ] D3 chart components (reusable across blog posts)
-- [ ] Kid zone v1: YouTube API allowlist, session timer, PIN
-- [ ] SEO: sitemap.xml, og:image, robots.txt
-
-### Phase 3 — Community (weeks 13–24)
-- Newsletter, Economics sim, courses, coaching, community posts, analytics
+### Phase 3 — Community (in progress)
+- [x] User profiles (bio, avatar, saved posts)
+- [x] Community posts + reactions
+- [x] SEO (sitemap.xml, og:image, robots.txt)
+- [ ] Newsletter (Resend vs Listmonk?)
+- [ ] Economics sim
+- [ ] Courses / coaching
+- [ ] Analytics (Plausible cloud vs self-hosted?)
 
 ---
 

@@ -63,16 +63,14 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | # | Issue | Priority | Plane ID | Status |
 |---|-------|----------|----------|--------|
 | 16 | User profiles (bio, avatar, saved posts) | high | — | **Done ✅** |
-| 17 | Community posts / reactions | medium | — | [ ] |
-| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | [ ] |
+| 17 | Community posts / reactions | medium | — | **Done ✅** |
+| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | **Done ✅** |
 
 **Depends on:** #16 (user profiles unblocks community + auth context)
 
 ## Current Sprint Focus
 
-**Phase 3 starting.** #16 User Profiles first (unblocks #17 + #18). Check existing auth schema first, then design page.
-
-**Last session (2026-04-03):** Phase 2 complete — all 6 sims + collections deployed.
+**Phase 3 core complete (2026-04-25).** All 3 core issues done: user profiles, community posts, SEO. Remaining Phase 3: newsletter, economics sim, courses, coaching, analytics. CEO to decide next priority.
 
 ## Decisions Made
 
@@ -110,3 +108,4 @@ A→B→C→E→D→F = "Understanding Nature from Cosmos to Consciousness"
 | 2026-04-03 | Phase 2F Brain & Consciousness complete. Built BrainScene.tsx (~910 LOC, 3 demos): Prediction Engine (hidden pattern challenge, D3 line chart accuracy tracker), Self Constructor (brain cross-section with 5 labeled regions, mental state slider), Time Perception Lab (interval estimation with 3 conditions, D3 box plot). 3 blog posts (brain-predicts-reality 700 words, self-as-story 700 words, time-flows-doesnt 700 words). Homepage updated: sim strip expanded to 8 sims, article count to 20. Build: 41 routes 0 errors. Tests: 2/2 pass. Plane #15 → Done. All Phase 2 sims complete (A→B→C→E→D→F). | **Phase 2 complete — prepare PRs for review** |
 | 2026-04-09 | Eng session: reviewed state — 15/15 Plane issues Done, build passes 41 routes 0 errors. Feature branches (brain, collections) already merged to main. Clean working tree. Updated cycle-status.md: Phase 3 section already present. better-auth stores user name/email/image in sessions table (extends PostgreSQL). Next: design + build #16 User Profiles (bio, avatar, saved posts). | Build #16 User Profiles |
 | 2026-04-10 | Phase 3 #16 User Profiles complete. Built: /profile page (bio edit, avatar, saved posts grid), bookmark toggle on blog posts (amber icon, optimistic update), Navbar auth state (avatar + profile link + sign out). Types refactor: shared Post types in types/post.ts (fixes client/server fs boundary). Build: 44 routes 0 errors. Tests: 2/2 pass. Commit b2b89e7. Plane: #16 → Done. | **Next: #17 Community posts or CEO decide** |
+| 2026-04-25 | Phase 3 #17 Community posts + #18 SEO complete. Built: /community listing page (create form, reactions, comment counts), /community/[slug] detail page (reactions + threaded comments), 4 API routes (posts CRUD, comments, reactions), lib/community-tables.ts + lib/slug.ts helpers. SEO: /sitemap.xml (dynamic), /robots.txt, /api/og (OG image generation), OG/Twitter meta on homepage, blog listing, blog posts, community pages. Build: 49 routes 0 errors. Tests: 2/2 pass. Merged feature/phase3-community-seo → main. Plane: #17 + #18 → Done. | **Phase 3 core done — CEO: decide next priorities (newsletter, courses, economics sim?)** |

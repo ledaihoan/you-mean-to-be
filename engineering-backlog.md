@@ -38,8 +38,8 @@
 | # | Issue | Priority | Plane ID | Status |
 |---|-------|----------|----------|--------|
 | 16 | User profiles (bio, avatar, saved posts) | high | — | [x] |
-| 17 | Community posts / reactions | medium | — | [ ] |
-| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | [ ] |
+| 17 | Community posts / reactions | medium | — | [x] |
+| 18 | SEO (sitemap.xml, og:image, robots.txt) | medium | — | [x] |
 
 ## How to Work an Issue
 
